@@ -39,20 +39,26 @@ const Hero: FC = () => {
       aria-label="Hero"
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6 pt-[120px] pb-20 text-center bg-black"
     >
-      {/* Background Slideshow */}
-      {HERO_IMAGES.map((img, idx) => (
-        <div
-          key={img}
-          className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
-          style={{
-            opacity: currentImg === idx ? 0.4 : 0,
-            backgroundImage: `url(${img})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-          aria-hidden="true"
-        />
-      ))}
+      {/* Background Slideshow — only attach backgroundImage for loaded slides to avoid
+          the browser fetching all 6 images upfront. The next image is included so it
+          preloads during the current slide's 5 s window. */}
+      {HERO_IMAGES.map((img, idx) => {
+        const nextImg = (currentImg + 1) % HERO_IMAGES.length;
+        const shouldLoad = idx === currentImg || idx === nextImg;
+        return (
+          <div
+            key={img}
+            className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
+            style={{
+              opacity: currentImg === idx ? 0.4 : 0,
+              backgroundImage: shouldLoad ? `url(${img})` : undefined,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+            aria-hidden="true"
+          />
+        );
+      })}
       
       {/* Gradient Overlay */}
       <div

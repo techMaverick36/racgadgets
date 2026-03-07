@@ -24,7 +24,7 @@ import type {
 // ─── WhatsApp ──────────────────────────────────────────────────────────────
 
 export const WA_CONFIG: WhatsAppConfig = {
-  number: "256700000000", // ← replace with real number
+  number: "256777589791", // ← replace with real number
   defaultMessage: "Hi! I'd like a tech consultation.",
 };
 
@@ -68,11 +68,12 @@ export const BENTO_ITEMS: BentoItem[] = [
     bg: "#1A1A1A",
     textColor: "white",
     label: "Unboxing",
-    title: "iPhone 16 Pro Max — First Look",
+    title: "New Device — First Look",
     icon: Smartphone,
     image: "/hero-workspace.jpg",
     playable: true,
-    whatsappMsg: "Hi! I saw your iPhone unboxing and I'm interested.",
+    href: "https://www.instagram.com/rac_gadgets?igsh=MXZpZDZlOW1oZWRrcg==",
+    whatsappMsg: "Hi! I saw your new device unboxing and I'm interested.",
   },
   {
     id: 2,
@@ -106,6 +107,7 @@ export const BENTO_ITEMS: BentoItem[] = [
     icon: PlayCircle,
     image: "/hero-vr.jpg",
     playable: true,
+    href: "https://www.tiktok.com/@racgadgets?_r=1&_t=ZS-94U5dnfxLn8",
     whatsappMsg: "Hi! I just watched the RAC brand reel and I'm interested.",
   },
   {
@@ -126,7 +128,7 @@ export const BENTO_ITEMS: BentoItem[] = [
 export const SERVICES: ServiceCard[] = [
   {
     icon: Wrench,
-    image: "https://images.unsplash.com/photo-1658240527554-9cf987b4de49?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Device repair
+    image: "https://images.unsplash.com/photo-1658240527554-9cf987b4de49?q=80&w=800&auto=format&fit=crop", // Device repair
     title: "Device Repairs",
     badge: "Express",
     badgeColor: "orange",
@@ -137,7 +139,7 @@ export const SERVICES: ServiceCard[] = [
   },
   {
     icon: FileCheck,
-    image: "https://images.unsplash.com/photo-1720048169707-a32d6dfca0b3?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Data transfer/phone migration
+    image: "https://images.unsplash.com/photo-1720048169707-a32d6dfca0b3?q=80&w=800&auto=format&fit=crop", // Data transfer/phone migration
     title: "Data Transfer",
     badge: "Safe",
     badgeColor: "green",

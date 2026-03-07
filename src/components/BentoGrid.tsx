@@ -30,7 +30,7 @@ const BentoCard: FC<BentoCardProps> = ({ item, delay }) => {
   return (
     <RevealWrapper delay={delay} className="group" style={gridStyle}>
       <a
-        href={waLink(item.whatsappMsg)}
+        href={item.href ?? waLink(item.whatsappMsg)}
         target="_blank"
         rel="noreferrer"
         aria-label={`${item.label}: ${item.title}`}
@@ -50,9 +50,11 @@ const BentoCard: FC<BentoCardProps> = ({ item, delay }) => {
         {/* Background Image with Overlay */}
         {item.image && (
           <div className="absolute inset-0">
-            <img 
-              src={item.image} 
-              alt="" 
+            <img
+              src={item.image}
+              alt=""
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
             />
             <div 

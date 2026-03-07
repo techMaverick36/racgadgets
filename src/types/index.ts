@@ -29,6 +29,8 @@ export interface BentoItem {
   image?: string;
   playable?: boolean;
   whatsappMsg: string;
+  /** Direct URL override — when set, the card links here instead of WhatsApp */
+  href?: string;
 }
 
 // --- Services ---
