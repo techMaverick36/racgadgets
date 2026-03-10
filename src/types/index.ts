@@ -70,6 +70,33 @@ export interface ProofCard {
   role: string;
 }
 
+export interface EducationItem {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  href: string;
+  category: string;
+}
+
+export interface PodcastItem {
+  id: number;
+  title: string;
+  author: string;
+  description: string;
+  image: string;
+  href: string;
+}
+
+export interface Testimonial {
+  id: number;
+  text: string;
+  author: string;
+  role: string;
+  image: string;
+  type: "review" | "thank-you";
+}
+
 // --- WhatsApp ---
 
 export interface WhatsAppConfig {

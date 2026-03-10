@@ -119,14 +119,14 @@ const BentoGrid: FC = () => {
       <div className="max-w-[1200px] mx-auto px-10 py-24">
         <RevealWrapper>
           <SectionHeader
-            tag="Content Vault"
+            tag="Visual Content"
             title={
               <>
-                Tech Knowledge,<br />
-                Delivered Daily.
+                Unboxing &<br />
+                Repairs Videos.
               </>
             }
-            subtitle="Follow our unboxings, reviews, and quick tips — then shop or book a service directly on WhatsApp."
+            subtitle="Watch our latest unboxings and repair demonstrations directly from our social media."
           />
         </RevealWrapper>
 

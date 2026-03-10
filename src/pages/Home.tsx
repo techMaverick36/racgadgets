@@ -3,7 +3,9 @@ import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import StatsBar from "../components/StatsBar";
 import BentoGrid from "../components/BentoGrid";
+import Blog from "../components/Blog";
 import Services from "../components/Services";
+import Testimonials from "../components/Testimonials";
 import SocialProof from "../components/SocialProof";
 import CTASection from "../components/CTASection";
 import Footer from "../components/Footer";
@@ -17,7 +19,9 @@ const Home: FC = () => {
         <Hero />
         <StatsBar />
         <BentoGrid />
+        <Blog />
         <Services />
+        <Testimonials />
         <SocialProof />
         <CTASection />
       </main>
