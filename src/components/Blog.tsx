@@ -4,7 +4,7 @@ import type { EducationItem, PodcastItem } from "../types";
 import { EDUCATION_ITEMS, PODCAST_ITEMS } from "../constants";
 import SectionHeader from "./SectionHeader";
 import RevealWrapper from "./RevealWrapper";
-import { cn } from "./cn";
+
 
 // ─── Education Card ────────────────────────────────────────────────────────
 

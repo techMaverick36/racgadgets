@@ -2,16 +2,14 @@ import {
   CheckCircle2,
   Smartphone,
   Zap,
-  Headphones,
+
   PlayCircle,
   Save,
   Wrench,
   Package,
   Laptop,
   ShieldCheck,
-  Radio,
-  BookOpen,
-  Video
+
 } from "lucide-react";
 import type {
   NavLink,
