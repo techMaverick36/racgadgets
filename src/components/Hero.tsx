@@ -108,7 +108,7 @@ const Hero: FC = () => {
 					}}
 				>
 					RAC Gadgets —<br />
-					<span className="text-[#EA580C]">Beyond the Box.</span>
+					<span className="text-[#EA580C]">Simplifying Tech.</span>
 				</h1>
 
 				{/* Sub-headline */}
