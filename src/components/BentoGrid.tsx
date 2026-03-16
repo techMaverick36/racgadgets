@@ -50,18 +50,20 @@ const BentoCard: FC<BentoCardProps> = ({ item, delay }) => {
         {/* Background Image with Overlay */}
         {item.image && (
           <div className="absolute inset-0">
-            <img
-              src={item.image}
-              alt=""
-              loading="lazy"
-              decoding="async"
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            <div
+              className="w-full h-full transition-transform duration-700 group-hover:scale-110"
+              style={{
+                backgroundImage: `url(${item.image})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center center",
+                backgroundRepeat: "no-repeat",
+              }}
             />
-            <div 
+            <div
               className="absolute inset-0 transition-opacity duration-300"
-              style={{ 
-                background: isDark 
-                  ? "linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.2) 100%)" 
+              style={{
+                background: isDark
+                  ? "linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.2) 100%)"
                   : "linear-gradient(to top, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0.4) 100%)"
               }}
             />
