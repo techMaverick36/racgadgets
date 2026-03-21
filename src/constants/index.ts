@@ -119,12 +119,12 @@ export const BENTO_ITEMS: BentoItem[] = [
   {
     id: 5,
     span: "normal",
-    bg: "#FFF0E8",
-    textColor: "dark",
+    bg: "#1A1A1A",
+    textColor: "white",
     label: "Unboxing",
     title: "New Gadgets First Look",
     icon: Package,
-    image: "/iphone17.jpg",
+    image: "/new_gadgets_1st.jpeg",
     playable: true,
     href: "https://www.instagram.com/rac_gadgets?igsh=MXZpZDZlOW1oZWRrcg==",
     whatsappMsg: "Hi! I'm interested in the latest gadgets I saw in your unboxing.",
@@ -177,7 +177,7 @@ export const EDUCATION_ITEMS: EducationItem[] = [
     title: "Battery Health Guide",
     category: "Quick Tip",
     description: "Learn how to keep your battery health at 100% with these pro tips. From charging habits to software settings.",
-    image: "https://images.unsplash.com/photo-1591405351990-4726e331f141?q=80&w=800&auto=format&fit=crop",
+    image: "/battery_health.jpeg",
     href: "/education/battery-health",
   },
   {
@@ -193,7 +193,7 @@ export const EDUCATION_ITEMS: EducationItem[] = [
     title: "Screen Protection 101",
     category: "Maintenance",
     description: "Why screen guards matter and how to choose the right one for your phone's display technology.",
-    image: "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?q=80&w=800&auto=format&fit=crop",
+    image: "/screen-protection.jpeg",
     href: "/education/screen-protection",
   },
 ];
