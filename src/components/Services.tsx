@@ -30,31 +30,24 @@ const ServiceCardComponent: FC<ServiceCardComponentProps> = ({ card, delay }) =>
         aria-label={`Book ${card.title} on WhatsApp`}
         className={cn(
           "group relative block h-full rounded-[20px] border border-black/[0.08] bg-white no-underline",
-          "transition-all duration-300 overflow-hidden",
-          "hover:border-[#EA580C] hover:-translate-y-1.5 hover:shadow-[0_24px_64px_rgba(234,88,12,0.12)]"
+          "transition-colors duration-200 overflow-hidden",
+          "hover:border-[#EA580C]"
         )}
       >
-        {/* Image Header with 'Details' Overlay */}
+        {/* Image header */}
         {card.image && (
           <div className="relative h-48 overflow-hidden">
             <img
               src={card.image}
-              alt={card.title}
+              alt=""
+              width={800}
+              height={384}
               loading="lazy"
               decoding="async"
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
-            {/* Dark overlay */}
-            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300" />
-            
-            {/* 'Details' text */}
-            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <span className="px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white text-[12px] font-bold tracking-[2px] uppercase">
-                Details
-              </span>
-            </div>
 
-            {/* Badge - moved inside image for better layout */}
+            {/* Badge */}
             <span
               className={cn(
                 "absolute top-4 right-4 z-10",
@@ -67,7 +60,7 @@ const ServiceCardComponent: FC<ServiceCardComponentProps> = ({ card, delay }) =>
           </div>
         )}
 
-        <div className="p-8">
+        <div className="p-6 sm:p-8">
           {/* Title */}
           <h3 className="relative z-10 font-display font-bold text-[22px] text-[#0A0A0A] mb-3">
             {card.title}
@@ -82,7 +75,7 @@ const ServiceCardComponent: FC<ServiceCardComponentProps> = ({ card, delay }) =>
           <ul className="relative z-10 space-y-2 mb-7 list-none p-0 m-0">
             {card.features.map((f) => (
               <li key={f} className="flex items-center gap-2 text-[13px] text-[#6B6B6B]">
-                <span className="text-[#EA580C] font-bold text-xs">✓</span>
+                <span className="text-[#EA580C] font-bold text-xs" aria-hidden="true">✓</span>
                 {f}
               </li>
             ))}
@@ -120,7 +113,7 @@ const Services: FC = () => {
       aria-label="Services"
       className="bg-[#FAFAFA]"
     >
-      <div className="max-w-[1200px] mx-auto px-10 py-24">
+      <div className="max-w-[1200px] mx-auto px-5 sm:px-10 py-24">
         <RevealWrapper>
           <SectionHeader
             tag="What We Do"

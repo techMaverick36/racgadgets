@@ -1,7 +1,13 @@
-/* ─── Fonts loaded via <link> in index.html (non-render-blocking) ───────── */
+/* ─── Fonts are loaded via <link> in index.html ────────────────────────── */
 
 /* ─── Tailwind v4 ──────────────────────────────────────────────────────── */
 @import "tailwindcss";
+
+/* Makes font-sans / font-display utilities use the brand fonts */
+@theme {
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-display: "Syne", system-ui, sans-serif;
+}
 
 /* ─── CSS Custom Properties ────────────────────────────────────────────── */
 :root {
@@ -22,6 +28,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* keep anchored headings clear of the fixed navbar */
   -webkit-text-size-adjust: 100%;
 }
 
@@ -35,9 +42,29 @@ body {
   overflow-x: hidden;
 }
 
-/* ─── Typography ───────────────────────────────────────────────────────── */
-.font-display {
-  font-family: 'Syne', system-ui, sans-serif;
+/* ─── Motion ───────────────────────────────────────────────────────────── */
+@keyframes hero-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* CSS-only so hero text shows immediately from the prerendered HTML */
+.hero-in {
+  animation: hero-in 0.7s ease both;
+}
+
+@keyframes live-dot {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.35; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* ─── Focus visible ────────────────────────────────────────────────────── */

@@ -1,29 +1,26 @@
-import { useState, useEffect, type FC } from "react";
+import { useState, useEffect, type FC, type CSSProperties } from "react";
 import { ChevronDown } from "lucide-react";
 import { useGreeting } from "./useGreeting";
 import { HERO_TRUST_BADGES, waLink } from "../constants";
-import { useScrollReveal } from "./useScrollReveal";
 import Button from "./Button";
 import WhatsAppIcon from "./WhatsAppIcon";
 
-const HERO_IMAGES = [
-	"/hero-workspace.jpg",
-	"/hero-headphones.jpg",
-	"/hero-camera.jpg",
-	"/hero-vr.jpg",
-	"/hero-stationery.jpg",
-	"/hero-cases.jpg",
-];
+const HERO_IMAGES = ["workspace", "headphones", "camera", "vr", "stationery", "cases"];
+
+const heroSrcSet = (name: string) =>
+	`/images/hero/${name}-1280.webp 1280w, /images/hero/${name}-1920.webp 1920w`;
+
+/** Staggered entrance delay for the CSS `hero-in` animation. */
+const enter = (delayMs: number): CSSProperties => ({ animationDelay: `${delayMs}ms` });
 
 /**
  * Hero — "The Daily Pulse"
  *
- * Dynamic greeting + bold brand headline + dual CTA.
- * Now features an engaging background image slideshow.
+ * Dynamic greeting + bold brand headline + dual CTA
+ * over a background image slideshow.
  */
 const Hero: FC = () => {
 	const greeting = useGreeting();
-	const [ref, visible] = useScrollReveal<HTMLDivElement>({ threshold: 0.05 });
 	const [currentImg, setCurrentImg] = useState(0);
 
 	useEffect(() => {
@@ -36,26 +33,26 @@ const Hero: FC = () => {
 	return (
 		<section
 			id="home"
-			aria-label="Hero"
-			className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6 pt-[120px] pb-20 text-center bg-black"
+			aria-label="Introduction"
+			className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-5 sm:px-6 pt-[120px] pb-20 text-center bg-black"
 		>
-			{/* Background Slideshow — only attach backgroundImage for loaded slides to avoid
-          the browser fetching all 6 images upfront. The next image is included so it
-          preloads during the current slide's 5 s window. */}
-			{HERO_IMAGES.map((img, idx) => {
+			{/* Background slideshow — only the current and next slides get a src, so
+          the browser never downloads all six up front. */}
+			{HERO_IMAGES.map((name, idx) => {
 				const nextImg = (currentImg + 1) % HERO_IMAGES.length;
 				const shouldLoad = idx === currentImg || idx === nextImg;
 				return (
-					<div
-						key={img}
-						className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
-						style={{
-							opacity: currentImg === idx ? 0.4 : 0,
-							backgroundImage: shouldLoad ? `url(${img})` : undefined,
-							backgroundSize: "cover",
-							backgroundPosition: "center",
-						}}
+					<img
+						key={name}
+						src={shouldLoad ? `/images/hero/${name}-1280.webp` : undefined}
+						srcSet={shouldLoad ? heroSrcSet(name) : undefined}
+						sizes="100vw"
+						alt=""
 						aria-hidden="true"
+						fetchPriority={idx === 0 ? "high" : "low"}
+						decoding="async"
+						className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out"
+						style={{ opacity: currentImg === idx ? 0.4 : 0 }}
 					/>
 				);
 			})}
@@ -66,126 +63,80 @@ const Hero: FC = () => {
 				aria-hidden="true"
 			/>
 
-			<div ref={ref} className="relative z-10 flex flex-col items-center">
+			<div className="relative z-10 flex flex-col items-center">
 				{/* Live pill */}
-				<div
-					className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-1.5 mb-7"
-					style={{
-						opacity: visible ? 1 : 0,
-						transform: visible ? "none" : "translateY(20px)",
-						transition: "opacity 0.6s ease, transform 0.6s ease",
-					}}
-				>
+				<div className="hero-in inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 mb-7">
 					<span
 						className="w-1.5 h-1.5 rounded-full bg-[#EA580C]"
-						style={{ animation: "pulse 2s infinite" }}
+						style={{ animation: "live-dot 2s ease-in-out infinite" }}
 					/>
 					<span className="text-[13px] font-semibold text-white">
-						Available &amp; Active Daily
+						Open daily on WhatsApp
 					</span>
 				</div>
 
 				{/* Greeting */}
-				<p
-					className="text-base font-medium text-white/80 mb-4"
-					style={{
-						opacity: visible ? 1 : 0,
-						transform: visible ? "none" : "translateY(24px)",
-						transition: "opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s",
-					}}
-				>
-					{greeting} — Welcome to RAC Gadgets
+				<p className="hero-in text-base font-medium text-white/80 mb-4" style={enter(100)}>
+					{greeting ? `${greeting}. Welcome to RAC Gadgets` : "Welcome to RAC Gadgets"}
 				</p>
 
 				{/* Headline */}
 				<h1
-					className="font-display font-extrabold leading-[1.05] tracking-[-2px] text-white max-w-[880px]"
-					style={{
-						fontSize: "clamp(44px, 7.5vw, 92px)",
-						opacity: visible ? 1 : 0,
-						transform: visible ? "none" : "translateY(30px)",
-						transition: "opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s",
-					}}
+					className="hero-in font-display font-extrabold leading-[1.05] tracking-[-2px] text-white max-w-[880px] text-[clamp(34px,10.5vw,56px)] sm:text-[clamp(44px,7.5vw,92px)]"
+					style={enter(200)}
 				>
-					RAC Gadgets —<br />
+					RAC Gadgets.<br />
 					<span className="text-[#EA580C]">Simplifying Tech.</span>
 				</h1>
 
 				{/* Sub-headline */}
 				<p
-					className="mt-6 text-[18px] text-white/70 max-w-[520px] leading-relaxed"
-					style={{
-						opacity: visible ? 1 : 0,
-						transform: visible ? "none" : "translateY(24px)",
-						transition: "opacity 0.7s ease 0.3s, transform 0.7s ease 0.3s",
-					}}
+					className="hero-in mt-6 text-[17px] sm:text-[18px] text-white/75 max-w-[540px] leading-relaxed"
+					style={enter(300)}
 				>
-					From phone repairs and screen protection to chargers, power banks, phones, and laptops, RAC Gadgets brings expert service directly to you. No queues, no stress just simple, same-day tech solutions.{" "}
+					Phone repairs, screen protection, chargers, power banks, phones and laptops,
+					brought to you in Kampala. No queues, no stress. Just simple, same-day tech help.
 				</p>
 
 				{/* CTAs */}
 				<div
-					className="flex flex-wrap items-center justify-center gap-3.5 mt-10"
-					style={{
-						opacity: visible ? 1 : 0,
-						transform: visible ? "none" : "translateY(20px)",
-						transition: "opacity 0.7s ease 0.42s, transform 0.7s ease 0.42s",
-					}}
+					className="hero-in flex flex-wrap items-center justify-center gap-3 mt-10"
+					style={enter(420)}
 				>
-					<a
+					<Button
 						href={waLink("Hi! I'd like to consult an expert.")}
 						target="_blank"
 						rel="noreferrer"
+						variant="primary"
+						size="lg"
+						icon={<WhatsAppIcon size={20} />}
 					>
-						<Button
-							variant="primary"
-							size="lg"
-							icon={<WhatsAppIcon size={20} />}
-							iconPosition="left"
-						>
-							Talk to an Expert
-						</Button>
-					</a>
-					<a href="#content">
-						<Button
-							variant="secondary"
-							size="lg"
-							iconPosition="right"
-							icon={<ChevronDown size={18} />}
-							className="bg-white/10 hover:bg-white/20 text-white border-white/20"
-						>
-							Explore Our World
-						</Button>
-					</a>
+						Talk to an Expert
+					</Button>
+					<Button
+						href="#content"
+						variant="inverse"
+						size="lg"
+						iconPosition="right"
+						icon={<ChevronDown size={18} />}
+					>
+						See Our Work
+					</Button>
 				</div>
 
 				{/* Trust badges */}
-				<div
-					className="flex flex-wrap items-center justify-center gap-8 mt-16"
-					style={{
-						opacity: visible ? 1 : 0,
-						transition: "opacity 0.7s ease 0.55s",
-					}}
+				<ul
+					className="hero-in flex flex-wrap items-center justify-center gap-x-8 gap-y-3 mt-16 list-none p-0"
+					style={enter(550)}
 				>
 					{HERO_TRUST_BADGES.map(({ icon: Icon, label }) => (
-						<div
-							key={label}
-							className="flex items-center gap-2 text-[13px] text-white/60"
-						>
-							<Icon size={16} className="text-[#EA580C]" />
+						<li key={label} className="flex items-center gap-2 text-[13px] text-white/70">
+							<Icon size={16} className="text-[#EA580C]" aria-hidden="true" />
 							{label}
-						</div>
+						</li>
 					))}
-				</div>
+				</ul>
 			</div>
-
-			{/* Pulse keyframe — injected inline for portability */}
-			<style>{`
-        @keyframes pulse {
-          0%, 100% { opacity: 1; transform: scale(1); }
-          50%       { opacity: 0.5; transform: scale(1.4); }
-        }
-      `}</style>
 		</section>
 	);
 };

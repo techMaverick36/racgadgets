@@ -16,24 +16,28 @@ import type {
   BentoItem,
   ServiceCard,
   StatItem,
-  ProofCard,
   EducationItem,
   PodcastItem,
   WhatsAppConfig,
   HeroTrustBadge,
-  Testimonial,
+  TestimonialPost,
 } from "../types";
 
 // ─── WhatsApp ──────────────────────────────────────────────────────────────
 
 export const WA_CONFIG: WhatsAppConfig = {
-  number: "256777589791", // ← replace with real number
+  number: "256777589791",
   defaultMessage: "Hi! I'd like a tech consultation.",
 };
 
 export const waLink = (msg?: string): string => {
   const text = encodeURIComponent(msg ?? WA_CONFIG.defaultMessage);
   return `https://wa.me/${WA_CONFIG.number}?text=${text}`;
+};
+
+export const SOCIAL_LINKS = {
+  instagram: "https://www.instagram.com/rac_gadgets",
+  tiktok: "https://www.tiktok.com/@racgadgets",
 };
 
 // ─── Navigation ────────────────────────────────────────────────────────────
@@ -74,9 +78,9 @@ export const BENTO_ITEMS: BentoItem[] = [
     label: "Unboxing",
     title: "iPhone 17 Pro Max — Cosmic Orange Unboxing",
     icon: Smartphone,
-    image: "/unboxing.jpeg",
+    image: "/images/content/unboxing.webp",
     playable: true,
-    href: "https://www.instagram.com/rac_gadgets?igsh=MXZpZDZlOW1oZWRrcg==",
+    href: SOCIAL_LINKS.instagram,
     whatsappMsg: "Hi! I saw your iPhone 17 Pro Max unboxing and I'm interested.",
   },
   {
@@ -87,9 +91,9 @@ export const BENTO_ITEMS: BentoItem[] = [
     label: "Repairs",
     title: "Screen Replacement — Before & After",
     icon: Wrench,
-    image: "/screenreplacement.jpeg",
+    image: "/images/content/screen-replacement.webp",
     playable: true,
-    href: "https://www.tiktok.com/@racgadgets?_r=1&_t=ZS-94U5dnfxLn8",
+    href: SOCIAL_LINKS.tiktok,
     whatsappMsg: "Hi! I saw your repair video and need my screen fixed.",
   },
   {
@@ -100,7 +104,7 @@ export const BENTO_ITEMS: BentoItem[] = [
     label: "Data Transfer",
     title: "Moving to a New Phone? We Make it Easy.",
     icon: Save,
-    image: "/datatransfer.jpeg",
+    image: "/images/content/data-transfer.webp",
     whatsappMsg: "Hi! I need help transferring data to my new phone.",
   },
   {
@@ -111,9 +115,9 @@ export const BENTO_ITEMS: BentoItem[] = [
     label: "Tutorial",
     title: "How to Set Up Your New Device Perfectly",
     icon: PlayCircle,
-    image: "/device_set_up.jpeg",
+    image: "/images/content/device-setup.webp",
     playable: true,
-    href: "https://www.tiktok.com/@racgadgets?_r=1&_t=ZS-94U5dnfxLn8",
+    href: SOCIAL_LINKS.tiktok,
     whatsappMsg: "Hi! I watched your setup tutorial and have some questions.",
   },
   {
@@ -124,9 +128,9 @@ export const BENTO_ITEMS: BentoItem[] = [
     label: "Unboxing",
     title: "New Gadgets First Look",
     icon: Package,
-    image: "/new_gadgets_1st.jpeg",
+    image: "/images/content/new-gadgets.webp",
     playable: true,
-    href: "https://www.instagram.com/rac_gadgets?igsh=MXZpZDZlOW1oZWRrcg==",
+    href: SOCIAL_LINKS.instagram,
     whatsappMsg: "Hi! I'm interested in the latest gadgets I saw in your unboxing.",
   },
 ];
@@ -169,7 +173,7 @@ export const SERVICES: ServiceCard[] = [
   },
 ];
 
-// ─── Education & Podcasts ──────────────────────────────────────────
+// ─── Education & Reels ─────────────────────────────────────────────
 
 export const EDUCATION_ITEMS: EducationItem[] = [
   {
@@ -177,24 +181,24 @@ export const EDUCATION_ITEMS: EducationItem[] = [
     title: "Battery Health Guide",
     category: "Quick Tip",
     description: "Learn how to keep your battery health at 100% with these pro tips. From charging habits to software settings.",
-    image: "/battery_health.jpeg",
-    href: "/education/battery-health",
+    image: "/images/content/battery-health.webp",
+    href: waLink("Hi! I'd like some tips on keeping my battery healthy."),
   },
   {
     id: 2,
     title: "Data Transfer Service",
     category: "Tutorial",
     description: "Everything you need to know about moving your data safely to your new device. iOS or Android, we've got you.",
-    image: "/datatransfer.jpeg",
-    href: "/education/data-transfer",
+    image: "/images/content/data-transfer.webp",
+    href: waLink("Hi! I need help transferring data to my new phone."),
   },
   {
     id: 3,
     title: "Screen Protection 101",
     category: "Maintenance",
     description: "Why screen guards matter and how to choose the right one for your phone's display technology.",
-    image: "/screen-protection.jpeg",
-    href: "/education/screen-protection",
+    image: "/images/content/screen-protection.webp",
+    href: waLink("Hi! Which screen guard is right for my phone?"),
   },
 ];
 
@@ -204,7 +208,7 @@ export const PODCAST_ITEMS: PodcastItem[] = [
     title: "The Heart of RAC Gadgets",
     author: "Instagram Reel",
     description: "A look into our mission and the passion behind RAC Gadgets. Join the conversation on Instagram.",
-    image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=70&w=160&auto=format&fit=crop",
     href: "https://www.instagram.com/reel/DUFotL9jf8T/",
   },
   {
@@ -212,158 +216,97 @@ export const PODCAST_ITEMS: PodcastItem[] = [
     title: "Customer First Approach",
     author: "Instagram Reel",
     description: "Why we do what we do. Our commitment to quality service and authentic tech solutions.",
-    image: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?q=70&w=160&auto=format&fit=crop",
     href: "https://www.instagram.com/reel/DLwdIgstfdx/",
   },
 ];
 
-// ─── Social Proof ──────────────────────────────────────────────────────────
-
-export const PROOF_CARDS: ProofCard[] = [
-  {
-    variant: "testimonial",
-    stars: 5,
-    text: "Repaired my Samsung screen in under an hour. Back to perfect condition. Absolutely professional service.",
-    author: "Amaka O.",
-    role: "Kampala",
-  },
-  {
-    variant: "testimonial",
-    stars: 5,
-    text: "Got my data transferred safely. I was so scared I'd lose everything. RAC Gadgets saved me!",
-    author: "David E.",
-    role: "Entebbe",
-  },
-  {
-    variant: "community",
-    stars: 5,
-    text: "Ordered on WhatsApp, delivered same day. The iPhone was sealed and genuine. 100% trustworthy.",
-    author: "Ngozi M.",
-    role: "Jinja",
-  },
-];
-
 // ─── Client Testimonials & Thank You ──────────────────────────────────────────
+// One entry per graphic in public/images/testimonials. The quotes repeat the
+// text inside each graphic so it is readable by screen readers and search engines.
 
-export const TESTIMONIALS: Testimonial[] = [
+const T = "/images/testimonials";
+
+export const TESTIMONIALS: TestimonialPost[] = [
   {
-    id: 1,
+    id: "reviews-headsets-repair",
     type: "review",
-    text: "Hey Albright, the headsets are really good and original. I truly appreciate your services.",
-    author: "Client",
-    role: "Headsets",
-    image: "/WhatsApp Image 2026-03-08 at 11.17.15 (1).jpeg",
+    image: `${T}/reviews-headsets-repair.webp`,
+    quotes: [
+      { text: "Hey Albright, the headsets are really good and original. I truly appreciate your services.", product: "Headsets" },
+      { text: "Enjoying the phone.", product: "Phone" },
+      { text: "Hi Albright, thanks for the good work!", product: "Phone repair" },
+    ],
   },
   {
-    id: 2,
+    id: "review-great-business",
     type: "review",
-    text: "Enjoying the phone",
-    author: "Client",
-    role: "Phone",
-    image: "/WhatsApp Image 2026-03-08 at 11.17.15 (1).jpeg",
+    image: `${T}/review-great-business.webp`,
+    quotes: [
+      { text: "It was great doing business with him. He gave me enough time to make a final decision, and also helped me buy other stuff I needed around town. I recommend him to more buyers. Thanks a lot bro.", product: "Phone" },
+    ],
   },
   {
-    id: 3,
+    id: "reviews-phone-watch-cover",
     type: "review",
-    text: "Hi Albright, Thanks for the good work!",
-    author: "Client",
-    role: "Phone Repair",
-    image: "/WhatsApp Image 2026-03-08 at 11.17.15 (1).jpeg",
+    image: `${T}/reviews-phone-watch-cover.webp`,
+    quotes: [
+      { text: "Thanks bro for this phone. It's giving! Milk and honey.", product: "Phone" },
+      { text: "My bro. The watch is very good. On point.", product: "Watch" },
+      { text: "Thanks so much. My phone is now beautiful looking!", product: "Phone cover" },
+    ],
   },
   {
-    id: 4,
+    id: "reviews-machine-accessories",
     type: "review",
-    text: "The machine is perfect",
-    author: "Client",
-    role: "Phone",
-    image: "/WhatsApp Image 2026-03-08 at 11.17.15.jpeg",
+    image: `${T}/reviews-machine-accessories.webp`,
+    quotes: [
+      { text: "The machine is perfect.", product: "Phone" },
+      { text: "Thank you as well for all the help selling. The phone now looks cute thanks to your accessories.", product: "Phone accessories" },
+    ],
   },
   {
-    id: 5,
+    id: "reviews-webale-airpods",
     type: "review",
-    text: "Thank you as well for all the help selling. The phone now looks cute thanks to your accessories.",
-    author: "Client",
-    role: "Phone Accessories",
-    image: "/WhatsApp Image 2026-03-08 at 11.17.15.jpeg",
+    image: `${T}/reviews-webale-airpods.webp`,
+    quotes: [
+      { text: "It's perfect! Webale.", product: "Phone" },
+      { text: "I love it. Little madam is enjoying it properly. It has a clear picture. Webale guy.", product: "Phone" },
+      { text: "The AirPods are really good btw. Will be getting the Samsung ones after I get my new phone.", product: "Headsets" },
+    ],
   },
   {
-    id: 6,
+    id: "reviews-8a-headsets",
     type: "review",
-    text: "It was great doing business with him. He gave me enough time to make a final decision, and also helped me buy other stuff I needed around town. I recommend him to more buyers. Thanks a lot bro.",
-    author: "Client",
-    role: "Phone",
-    image: "/WhatsApp Image 2026-03-08 at 11.17.16 (1).jpeg",
+    image: `${T}/reviews-8a-headsets.webp`,
+    quotes: [
+      { text: "I'm enjoying my 8a. Took me so long. I should've been here a long time ago.", product: "Phone" },
+      { text: "You're most welcome! Thank you for your quick response.", product: "Phone" },
+      { text: "RAC Gadgets abelewo. The headsets are too steady my guy, I am hearing the sounds of tomorrow.", product: "Headsets" },
+    ],
   },
   {
-    id: 7,
-    type: "review",
-    text: "Thanks bro for this phone. Its giving! Milk and honey.",
-    author: "Client",
-    role: "Phone",
-    image: "/WhatsApp Image 2026-03-08 at 11.17.16 (2).jpeg",
-  },
-  {
-    id: 8,
-    type: "review",
-    text: "My bro. The watch is very good. On point",
-    author: "Client",
-    role: "Watch",
-    image: "/WhatsApp Image 2026-03-08 at 11.17.16 (2).jpeg",
-  },
-  {
-    id: 9,
-    type: "review",
-    text: "Thanks so much. My phone is now beautiful looking!",
-    author: "Client",
-    role: "Phone Cover",
-    image: "/WhatsApp Image 2026-03-08 at 11.17.16 (2).jpeg",
-  },
-  {
-    id: 10,
+    id: "thank-you-esther-isaac",
     type: "thank-you",
-    text: "Thank You",
-    author: "Esther",
-    role: "Happy Client",
-    image: "/WhatsApp Image 2026-03-08 at 11.11.32 (2).jpeg",
+    image: `${T}/thank-you-esther-isaac.webp`,
+    names: ["Esther", "Isaac"],
   },
   {
-    id: 11,
+    id: "thank-you-sylvia-sarah",
     type: "thank-you",
-    text: "Thank You",
-    author: "Isaac",
-    role: "Happy Client",
-    image: "/WhatsApp Image 2026-03-08 at 11.11.32 (2).jpeg",
+    image: `${T}/thank-you-sylvia-sarah.webp`,
+    names: ["Sylvia", "Sarah"],
   },
   {
-    id: 12,
+    id: "thank-you-team-1",
     type: "thank-you",
-    text: "Thank You",
-    author: "Sylvia",
-    role: "Happy Client",
-    image: "/WhatsApp Image 2026-03-08 at 11.11.32 (3).jpeg",
+    image: `${T}/thank-you-team-1.webp`,
+    names: [],
   },
   {
-    id: 13,
+    id: "thank-you-team-2",
     type: "thank-you",
-    text: "Thank You",
-    author: "Sarah",
-    role: "Happy Client",
-    image: "/WhatsApp Image 2026-03-08 at 11.11.32 (2).jpeg",
-  },
-  {
-    id: 14,
-    type: "thank-you",
-    text: "Thank You",
-    author: "Team",
-    role: "RAC Gadgets Team",
-    image: "/WhatsApp Image 2026-03-08 at 11.11.32 (1).jpeg",
-  },
-  {
-    id: 15,
-    type: "thank-you",
-    text: "Thank You",
-    author: "Team",
-    role: "RAC Gadgets Team",
-    image: "/WhatsApp Image 2026-03-08 at 11.11.32.jpeg",
+    image: `${T}/thank-you-team-2.webp`,
+    names: [],
   },
 ];

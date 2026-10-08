@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import { Settings } from "lucide-react";
-import { waLink } from "../constants";
+import { waLink, SOCIAL_LINKS } from "../constants";
 
 interface FooterLinkGroup {
   heading: string;
@@ -21,16 +21,16 @@ const LINK_GROUPS: FooterLinkGroup[] = [
     heading: "Connect",
     links: [
       { label: "WhatsApp", href: waLink(), external: true },
-      { label: "TikTok", href: "#", external: true },
-      { label: "Instagram", href: "#", external: true },
+      { label: "Instagram", href: SOCIAL_LINKS.instagram, external: true },
+      { label: "TikTok", href: SOCIAL_LINKS.tiktok, external: true },
     ],
   },
   {
-    heading: "Company",
+    heading: "Explore",
     links: [
-      { label: "About", href: "#" },
+      { label: "Services", href: "#services" },
+      { label: "Tips & Guides", href: "#education" },
       { label: "Reviews", href: "#reviews" },
-      { label: "Blog", href: "#" },
     ],
   },
 ];
@@ -44,7 +44,7 @@ const Footer: FC = () => {
     <footer
       id="contact"
       aria-label="Site footer"
-      className="bg-[#0A0A0A] text-white px-10 pt-16 pb-8"
+      className="bg-[#0A0A0A] text-white px-5 sm:px-10 pt-16 pb-8"
     >
       <div className="max-w-[1200px] mx-auto">
         {/* Top row */}
@@ -55,21 +55,22 @@ const Footer: FC = () => {
               <span className="relative">
                 R.A.C.
               </span>
-              <Settings 
-                size={20} 
-                className="text-[#EA580C] transition-transform duration-1000 group-hover:rotate-180" 
+              <Settings
+                size={20}
+                className="text-[#EA580C] transition-transform duration-1000 group-hover:rotate-180"
                 strokeWidth={2.5}
+                aria-hidden="true"
               />
             </a>
-            <p className="text-[14px] text-white/40 leading-relaxed">
-              Your Trusted Tech Partner. Premium gadgets, expert repairs, and human care — one WhatsApp message away.
+            <p className="text-[14px] text-white/60 leading-relaxed">
+              Phones, accessories and repairs in Kampala, one WhatsApp message away.
             </p>
           </div>
 
           {/* Link groups */}
           {LINK_GROUPS.map(({ heading, links }) => (
             <div key={heading}>
-              <h3 className="text-[12px] font-bold tracking-[1.5px] uppercase text-white/30 mb-4">
+              <h3 className="text-[12px] font-bold tracking-[1.5px] uppercase text-white/50 mb-4">
                 {heading}
               </h3>
               <ul className="space-y-2.5 list-none p-0 m-0">
@@ -79,7 +80,7 @@ const Footer: FC = () => {
                       href={href}
                       target={external ? "_blank" : undefined}
                       rel={external ? "noreferrer" : undefined}
-                      className="text-[14px] text-white/55 no-underline transition-colors duration-200 hover:text-[#EA580C]"
+                      className="text-[14px] text-white/70 no-underline transition-colors duration-200 hover:text-[#EA580C]"
                     >
                       {label}
                     </a>
@@ -92,11 +93,11 @@ const Footer: FC = () => {
 
         {/* Bottom row */}
         <div className="flex flex-wrap justify-between items-center gap-3 pt-7">
-          <p className="text-[13px] text-white/25">
+          <p className="text-[13px] text-white/50">
             © {new Date().getFullYear()} RAC Gadgets. All rights reserved.
           </p>
           <p className="font-display font-semibold text-[13px] text-[#EA580C]">
-            "Expert Tech. Human Touch."
+            Expert Tech. Human Touch.
           </p>
         </div>
       </div>

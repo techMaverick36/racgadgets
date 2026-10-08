@@ -1,9 +1,10 @@
-import type { FC, CSSProperties } from "react";
+import type { FC } from "react";
 import { PlayCircle } from "lucide-react";
 import type { BentoItem } from "../types";
 import { BENTO_ITEMS, waLink } from "../constants";
 import SectionHeader from "./SectionHeader";
 import RevealWrapper from "./RevealWrapper";
+import { cn } from "./cn";
 
 // ─── Individual Bento Card ─────────────────────────────────────────────────
 
@@ -20,44 +21,33 @@ const BentoCard: FC<BentoCardProps> = ({ item, delay }) => {
       ? "rgba(255,255,255,0.45)"
       : "#EA580C";
 
-  const gridStyle: CSSProperties = {
-    gridColumn: item.span === "wide" ? "span 2" : "span 1",
-    gridRow: item.span === "tall" ? "span 2" : "span 1",
-  };
-
   const minH = item.span === "tall" ? 480 : 240;
 
   return (
-    <RevealWrapper delay={delay} className="group" style={gridStyle}>
+    <RevealWrapper
+      delay={delay}
+      className={cn(
+        "group",
+        item.span === "wide" && "sm:col-span-2",
+        item.span === "tall" && "lg:row-span-2"
+      )}
+    >
       <a
         href={item.href ?? waLink(item.whatsappMsg)}
         target="_blank"
         rel="noreferrer"
         aria-label={`${item.label}: ${item.title}`}
         className="relative block h-full rounded-[20px] overflow-hidden cursor-pointer no-underline bg-zinc-900"
-        style={{
-          transition: "transform 0.4s cubic-bezier(0.2, 0, 0.2, 1), box-shadow 0.4s ease",
-        }}
-        onMouseEnter={(e) => {
-          (e.currentTarget as HTMLAnchorElement).style.transform = "scale(1.015)";
-          (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 20px 60px rgba(0,0,0,0.2)";
-        }}
-        onMouseLeave={(e) => {
-          (e.currentTarget as HTMLAnchorElement).style.transform = "scale(1)";
-          (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none";
-        }}
       >
         {/* Background Image with Overlay */}
         {item.image && (
           <div className="absolute inset-0">
-            <div
-              className="w-full h-full transition-transform duration-700 group-hover:scale-110"
-              style={{
-                backgroundImage: `url(${item.image})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center center",
-                backgroundRepeat: "no-repeat",
-              }}
+            <img
+              src={item.image}
+              alt=""
+              loading="lazy"
+              decoding="async"
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
             <div
               className="absolute inset-0 transition-opacity duration-300"
@@ -113,19 +103,19 @@ const BentoCard: FC<BentoCardProps> = ({ item, delay }) => {
  *
  * Editorial-style 3-column grid showcasing social media content types.
  * Cards link directly to contextual WhatsApp messages.
- * Responsive: collapses to 2-col on tablet, 1-col on mobile.
+ * Responsive: 3 columns on desktop, 2 on tablet, 1 on mobile.
  */
 const BentoGrid: FC = () => {
   return (
-    <section id="content" aria-label="Content vault">
-      <div className="max-w-[1200px] mx-auto px-10 py-24">
+    <section id="content" aria-label="Unboxing and repair videos">
+      <div className="max-w-[1200px] mx-auto px-5 sm:px-10 py-24">
         <RevealWrapper>
           <SectionHeader
             tag="Visual Content"
             title={
               <>
                 Unboxing &<br />
-                Repairs Videos.
+                Repair Videos.
               </>
             }
             subtitle="Watch our latest unboxings and repair demonstrations directly from our social media."
@@ -133,27 +123,11 @@ const BentoGrid: FC = () => {
         </RevealWrapper>
 
         {/* Grid */}
-        <div
-          className="mt-14 grid gap-4"
-          style={{
-            gridTemplateColumns: "repeat(3, 1fr)",
-          }}
-        >
+        <div className="mt-14 grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {BENTO_ITEMS.map((item, i) => (
             <BentoCard key={item.id} item={item} delay={i * 70} />
           ))}
         </div>
-
-        {/* Responsive override via style tag */}
-        <style>{`
-          @media (max-width: 900px) {
-            #content .grid { grid-template-columns: repeat(2, 1fr) !important; }
-            #content .grid > * { grid-column: span 1 !important; grid-row: span 1 !important; }
-          }
-          @media (max-width: 600px) {
-            #content .grid { grid-template-columns: 1fr !important; }
-          }
-        `}</style>
       </div>
     </section>
   );

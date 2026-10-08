@@ -1,4 +1,4 @@
-﻿import type { LucideIcon } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 // --- Navigation ---
 
@@ -55,20 +55,7 @@ export interface StatItem {
   label: string;
 }
 
-// --- Social Proof ---
-
-export type ProofVariant = "testimonial" | "podcast" | "community";
-
-export interface ProofCard {
-  variant: ProofVariant;
-  featured?: boolean;
-  tag?: string;
-  tagIcon?: LucideIcon;
-  stars: number;
-  text: string;
-  author: string;
-  role: string;
-}
+// --- Education ---
 
 export interface EducationItem {
   id: number;
@@ -88,14 +75,21 @@ export interface PodcastItem {
   href: string;
 }
 
-export interface Testimonial {
-  id: number;
-  text: string;
-  author: string;
-  role: string;
-  image: string;
-  type: "review" | "thank-you";
-}
+/** A testimonial graphic as posted on social media. */
+export type TestimonialPost =
+  | {
+      id: string;
+      type: "review";
+      image: string;
+      quotes: { text: string; product: string }[];
+    }
+  | {
+      id: string;
+      type: "thank-you";
+      image: string;
+      /** Customers pictured in the graphic; empty for team posts. */
+      names: string[];
+    };
 
 // --- WhatsApp ---
 

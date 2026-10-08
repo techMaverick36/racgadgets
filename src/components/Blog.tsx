@@ -1,7 +1,7 @@
 import type { FC } from "react";
-import { ArrowRight, Radio } from "lucide-react";
+import { ArrowRight, PlayCircle } from "lucide-react";
 import type { EducationItem, PodcastItem } from "../types";
-import { EDUCATION_ITEMS, PODCAST_ITEMS } from "../constants";
+import { EDUCATION_ITEMS, PODCAST_ITEMS, SOCIAL_LINKS } from "../constants";
 import SectionHeader from "./SectionHeader";
 import RevealWrapper from "./RevealWrapper";
 
@@ -16,11 +16,15 @@ interface EducationCardProps {
 const EducationCard: FC<EducationCardProps> = ({ item, delay }) => {
   return (
     <RevealWrapper delay={delay}>
-      <div className="group bg-white rounded-[24px] border border-black/[0.08] overflow-hidden transition-all duration-300 hover:shadow-[0_20px_50px_rgba(0,0,0,0.05)] hover:-translate-y-1">
+      <article className="group h-full bg-white rounded-[20px] border border-black/[0.08] overflow-hidden transition-colors duration-200 hover:border-black/20">
         <div className="relative h-52 overflow-hidden">
           <img
             src={item.image}
-            alt={item.title}
+            alt=""
+            width={640}
+            height={416}
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
           <div className="absolute top-4 left-4">
@@ -36,17 +40,19 @@ const EducationCard: FC<EducationCardProps> = ({ item, delay }) => {
           </p>
           <a
             href={item.href}
-            className="inline-flex items-center gap-2 text-sm font-bold text-[#EA580C] hover:gap-3 transition-all"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 text-sm font-bold text-[#C2410C] hover:gap-3 transition-all"
           >
-            Learn More <ArrowRight size={16} />
+            Ask us about this <ArrowRight size={16} aria-hidden="true" />
           </a>
         </div>
-      </div>
+      </article>
     </RevealWrapper>
   );
 };
 
-// ─── Podcast Card ──────────────────────────────────────────────────────────
+// ─── Reel Card ─────────────────────────────────────────────────────────────
 
 interface PodcastCardProps {
   item: PodcastItem;
@@ -63,18 +69,26 @@ const PodcastCard: FC<PodcastCardProps> = ({ item, delay }) => {
         className="flex items-center gap-5 p-5 bg-zinc-50 rounded-[20px] border border-zinc-200/50 transition-all hover:bg-zinc-100 group"
       >
         <div className="w-16 h-16 rounded-xl overflow-hidden flex-shrink-0">
-          <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
+          <img
+            src={item.image}
+            alt=""
+            width={64}
+            height={64}
+            loading="lazy"
+            decoding="async"
+            className="w-full h-full object-cover"
+          />
         </div>
         <div className="flex-grow">
           <div className="flex items-center gap-1.5 mb-1">
-            <Radio size={12} className="text-[#EA580C]" />
-            <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Podcast</span>
+            <PlayCircle size={12} className="text-[#EA580C]" aria-hidden="true" />
+            <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Reel</span>
           </div>
-          <h4 className="font-bold text-zinc-900 group-hover:text-[#EA580C] transition-colors">{item.title}</h4>
+          <h3 className="font-bold text-zinc-900 group-hover:text-[#C2410C] transition-colors">{item.title}</h3>
           <p className="text-xs text-zinc-500 mt-0.5">{item.author}</p>
         </div>
         <div className="w-10 h-10 rounded-full border border-zinc-200 flex items-center justify-center text-zinc-400 group-hover:bg-[#EA580C] group-hover:border-[#EA580C] group-hover:text-white transition-all">
-          <ArrowRight size={18} />
+          <ArrowRight size={18} aria-hidden="true" />
         </div>
       </a>
     </RevealWrapper>
@@ -85,7 +99,7 @@ const PodcastCard: FC<PodcastCardProps> = ({ item, delay }) => {
 
 const Blog: FC = () => {
   return (
-    <section id="education" className="py-24 px-10 bg-white">
+    <section id="education" aria-label="Tips and guides" className="py-24 px-5 sm:px-10 bg-white">
       <div className="max-w-[1200px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
           {/* Left: Education Cards */}
@@ -113,10 +127,10 @@ const Blog: FC = () => {
                   Listen Now
                 </p>
                 <h2 className="font-display font-extrabold text-3xl text-zinc-900 mb-4">
-                  Podcast<br />Recommendations.
+                  From Our<br />Reels.
                 </h2>
                 <p className="text-[#6B6B6B] text-sm mb-10 leading-relaxed">
-                  Stay updated with the latest in tech and entrepreneurship through our favorite podcasts.
+                  Short videos on why we do what we do, straight from our Instagram.
                 </p>
               </div>
             </RevealWrapper>
@@ -129,23 +143,21 @@ const Blog: FC = () => {
 
             {/* CTA for more podcasts or blog */}
             <RevealWrapper delay={600}>
-              <div className="mt-10 p-7 bg-[#EA580C] rounded-[24px] text-white overflow-hidden relative">
-                <div className="relative z-10">
-                  <h4 className="font-bold text-lg mb-2">Want More Tips?</h4>
-                  <p className="text-white/80 text-xs leading-relaxed mb-5">
+              <div className="mt-10 p-7 bg-[#EA580C] rounded-[20px] text-white">
+                <div>
+                  <h3 className="font-bold text-lg mb-2">Want More Tips?</h3>
+                  <p className="text-white/90 text-sm leading-relaxed mb-5">
                     Follow us on Instagram for daily bite-sized tech education.
                   </p>
                   <a
-                    href="https://www.instagram.com/rac_gadgets"
+                    href={SOCIAL_LINKS.instagram}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-white text-[#EA580C] rounded-full text-[11px] font-bold uppercase tracking-wider hover:bg-zinc-100 transition-colors"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-white text-[#C2410C] rounded-[8px] text-[13px] font-semibold hover:bg-zinc-100 transition-colors"
                   >
                     Follow @rac_gadgets
                   </a>
                 </div>
-                {/* Decorative circle */}
-                <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-white/10 rounded-full" />
               </div>
             </RevealWrapper>
           </div>

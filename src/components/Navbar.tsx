@@ -17,11 +17,10 @@ const Navbar: FC = () => {
 
   return (
     <header
-      role="banner"
       className={cn(
         "fixed top-0 left-0 right-0 z-50",
         "flex items-center justify-between",
-        "px-10 py-[18px] transition-all duration-300",
+        "px-5 sm:px-10 py-[18px] transition-all duration-300",
         "backdrop-blur-xl bg-white/85",
         "border-b border-black/[0.06]",
         scrolled && "shadow-[0_4px_24px_rgba(0,0,0,0.06)] py-3.5"
@@ -36,10 +35,11 @@ const Navbar: FC = () => {
         <span className="relative">
           R.A.C.
         </span>
-        <Settings 
-          size={18} 
-          className="text-[#D9480F] w-full transition-transform duration-1000 group-hover:rotate-180" 
+        <Settings
+          size={18}
+          className="text-[#EA580C] transition-transform duration-1000 group-hover:rotate-180"
           strokeWidth={2.5}
+          aria-hidden="true"
         />
       </a>
 
@@ -63,16 +63,16 @@ const Navbar: FC = () => {
       </nav>
 
       {/* CTA */}
-      <a href={waLink()} target="_blank" rel="noreferrer">
-        <Button
-          variant="primary"
-          size="sm"
-          icon={<WhatsAppIcon size={15} />}
-          iconPosition="left"
-        >
-          Chat with Us
-        </Button>
-      </a>
+      <Button
+        href={waLink()}
+        target="_blank"
+        rel="noreferrer"
+        variant="primary"
+        size="sm"
+        icon={<WhatsAppIcon size={15} />}
+      >
+        Chat with Us
+      </Button>
     </header>
   );
 };

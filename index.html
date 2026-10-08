@@ -2,21 +2,64 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RAC Gadgets — Beyond the Box</title>
+    <title>RAC Gadgets | Phone Repairs, Accessories &amp; Genuine Phones in Kampala</title>
+    <meta name="description" content="Screen replacements, battery swaps, screen guards, chargers, power banks and genuine sealed phones and laptops. Same-day doorstep service in Kampala. Chat with RAC Gadgets on WhatsApp." />
+    <link rel="canonical" href="%VITE_SITE_URL%/" />
+    <meta name="theme-color" content="#0A0A0A" />
 
-    <!-- Preconnect to Google Fonts servers so the connection is established early -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Link previews (WhatsApp, Facebook, X, LinkedIn) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="RAC Gadgets" />
+    <meta property="og:title" content="RAC Gadgets | Phone Repairs, Accessories &amp; Genuine Phones" />
+    <meta property="og:description" content="Same-day repairs, accessories and genuine sealed phones and laptops, delivered to you in Kampala. One WhatsApp message away." />
+    <meta property="og:url" content="%VITE_SITE_URL%/" />
+    <meta property="og:image" content="%VITE_SITE_URL%/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="RAC Gadgets: repairs, accessories and genuine phones" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ElectronicsStore",
+        "name": "RAC Gadgets",
+        "description": "Phone and laptop sales, accessories, screen replacements, battery swaps and data transfer with same-day doorstep service.",
+        "url": "%VITE_SITE_URL%/",
+        "image": "%VITE_SITE_URL%/og-image.jpg",
+        "logo": "%VITE_SITE_URL%/apple-touch-icon.png",
+        "telephone": "+256777589791",
+        "areaServed": "Kampala, Uganda",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kampala",
+          "addressCountry": "UG"
+        },
+        "sameAs": [
+          "https://www.instagram.com/rac_gadgets",
+          "https://www.tiktok.com/@racgadgets"
+        ]
+      }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- Load fonts as a non-render-blocking <link> instead of a CSS @import -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600..800&family=DM+Sans:opsz,wght@9..40,400..700&display=swap" />
 
-    <!-- Preload the hero LCP image so it starts downloading immediately -->
-    <link rel="preload" as="image" href="/hero-workspace.jpg" />
-
-    <!-- Preconnect to Unsplash so service-card images resolve faster -->
-    <link rel="preconnect" href="https://images.unsplash.com" />
+    <!-- First hero slide is the LCP element: fetch it before the JS runs -->
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
+      href="/images/hero/workspace-1280.webp"
+      imagesrcset="/images/hero/workspace-1280.webp 1280w, /images/hero/workspace-1920.webp 1920w"
+      imagesizes="100vw"
+      fetchpriority="high"
+    />
   </head>
   <body>
     <div id="root"></div>

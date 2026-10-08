@@ -6,7 +6,6 @@ import BentoGrid from "../components/BentoGrid";
 import Blog from "../components/Blog";
 import Services from "../components/Services";
 import Testimonials from "../components/Testimonials";
-import SocialProof from "../components/SocialProof";
 import CTASection from "../components/CTASection";
 import Footer from "../components/Footer";
 import FloatingWhatsApp from "../components/FloatingWhatsApp";
@@ -22,7 +21,6 @@ const Home: FC = () => {
         <Blog />
         <Services />
         <Testimonials />
-        <SocialProof />
         <CTASection />
       </main>
       <Footer />
